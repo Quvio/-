@@ -13,19 +13,27 @@ if not os.path.isfile("text.txt"):
     exit()
 slv = {"0":"ноль", "1":"один", "2":"два", "3":"три", "4":"четыре", "5":"пять", "6":"шесть", "7":"семь", "8":"восемь", "9":"девять"}
 flag = 1
+count1 = 0
 with open ('text.txt', 'r') as f:
     line = f.read()
     nmbrs = line.split()
 
-    print(nmbrs)
-    print("Результат кода:")
-    if nmbrs == []:
-        flag = 2
+       if nmbrs == []:
+        print("Файл пустой")
+        exit()
     for i in range(len(nmbrs)):
         a = nmbrs[i]
-        notbn = int(a, 2)
         if not a.isdigit():
             continue
+
+        for c in range(len(str(a))):
+            if str(a)[c] != "0" and str(a)[c] != "1":
+                flag = 3
+
+        if flag == 3:
+            flag = 1
+            continue
+        notbn = int(a, 2)
         if notbn % 2 != 0 or notbn >= 1024:
             continue
         count = 0
@@ -35,8 +43,6 @@ with open ('text.txt', 'r') as f:
             a = a.replace("000", "", 1)
         if count >= 2:
             print("Число номер", i,":", a.replace("0", ""), end=". ")
-            flag = 0
-if flag == 1:
+            count1 += 1
+if count1 == 0:
     print("В файле нет подходящий чисел")
-if flag == 2:
-    print("Файл пустой")
