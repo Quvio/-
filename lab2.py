@@ -22,7 +22,7 @@ with open('text.txt', 'r') as f:
     res = re.split("\s", line)
     print(res)
     for c in res:
-        if re.search(r"\B000\d[0-1]*000", c) and re.search(r"\d+0\Z", c) and re.fullmatch(r"\d{1,11}", c):
+        if re.search(r"000[0-1]*000", c) and re.search(r"\d+0\Z", c) and re.fullmatch(r"\d{1,11}", c):
             print(re.sub("0", "", c), int(c,2))
             flag = 1
         else:
