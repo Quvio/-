@@ -27,7 +27,7 @@ def printM(x):
         print()
 
 #Создание матриц
-K, N = int(input()), int(input())
+K, N = int(input("Введите К")), int(input("Введите N"))
 half = N // 2
 B, E, D, C = [], [], [], []
 R = [B, E, D, C]
