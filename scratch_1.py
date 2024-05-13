@@ -33,12 +33,12 @@ B, E, D, C = [], [], [], []
 R = [B, E, D, C]
 A = []
 for r in range(4):
-    for _ in range(N // 2):
-        a = [random.randint(-10, 10) for i in range(N // 2)]
+    for _ in range(half):
+        a = [random.randint(-10, 10) for i in range(half)]
         R[r].append(a)
-for i in range(N // 2):
+for i in range(half):
     A.append(E[i] + B[i])
-for i in range(N // 2):
+for i in range(half):
     A.append(D[i] + C[i])
 print("Матрица А")
 printM(A)
@@ -49,20 +49,24 @@ s = 1
 for i in range(half - 1, half // 2 - 1, -1):
     if i > half - i:
         for j in range(i, half - i - 2, -1):
-            if i % 2 == 0 and C[i][j] > K: count += 1
+            if i % 2 == 0 and C[i][j] > K:
+                count += 1
     else:
-        for j in range(half - i - 1, i - 1, - 1):
-            if i % 2 == 0 and C[i][j] > K: count += 1
+        for j in range(half - i , i - 2, - 1):
+            if i % 2 == 0 and C[i][j] > K:
+                count += 1
 print("Колличество чисел в 3 зоне больших К:", count)
 
 f = half // 2  # зона 2
-for i in range(half // 2):
-    for j in range(half - 1, f - i, -1):
-        if j % 2 != 0: s *= C[i][j]
-    f -= 1
-for i in range(half // 2, half):
+for i in range(half // 2,-1,-1):
+    for j in range(f, half):
+        if j % 2 != 0:
+            s *= C[i][j]
+    f += 1
+for i in range(half // 2 + 1, half):
     for j in range(half - 1, i - 1, -1):
-        if j % 2 != 0: s *= C[i][j]
+        if j % 2 != 0:
+            s *= C[i][j]
 print("Произведение чисел в зоне 2:", s)
 
 #Трансформации
