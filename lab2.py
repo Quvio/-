@@ -22,8 +22,10 @@ with open('text.txt', 'r') as f:
     res = re.split("\s", line)
     print(res)
     for c in res:
-        if re.search(r"000[0-1]*000", c) and re.search(r"\d+0\Z", c) and re.fullmatch(r"\d{1,11}", c):
-            print(re.sub("0", "", c), int(c,2))
+        if re.search(r"000[0-1]*000", c) and re.search(r"\d+0\Z", c) and re.fullmatch(  r"0*1\d{1,10}\Z|0*", c):
+            print("Подходящее по условию число:", c, int(c,2))
+            print("Число без нулей:", re.sub("0", "", c))
+            print("____________")
             flag = 1
         else:
             continue
