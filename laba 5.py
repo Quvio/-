@@ -70,9 +70,6 @@ for n in range(1, q+1):
 recf = [recF(n) for n in range(1, q+1)]
 intf = [iterF(n) for n in range(1, q+1)]
 print('Таблица сравнения времени:')
-#print(recf)
-#print("___")
-#print(intf)
 print("| {:^7} | {:^15} | {:^15} |".format("n", "Рекурсия", "Интеракция"))
 for i in range(1,q+1):
     print("| {:^7} | {:^14.6f} | {:^14.6f} |".format(i, time1[i-1], time2[i-1]))
