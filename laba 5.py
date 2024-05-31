@@ -12,13 +12,6 @@ F(1) = 1, F(n) = (-1)n*(F(n–1) /(2n)!-(2*n + 1)!), при n > 1
 '''
 import timeit
 import matplotlib.pyplot as plt
-import tabulate
-f = 1
-
-def factorial(n):
-    global f
-    f = n * f
-    return f
 
 def fact1(n):
     if n == 1 or n == 0:
@@ -26,9 +19,9 @@ def fact1(n):
     else:
         return n * fact1(n - 1)
 
-def i_fl(n):
+def fact2(n):
     x = 1
-    for i in range(2, n + 1):
+    for i in range(1, n + 1):
         x *= i
     return x
 
@@ -43,21 +36,21 @@ def recF(n):
         k *= -1
         lastF = k * ((recF(n - 1) / fact1(2 * n)) - fact1(2*n + 1))
         return lastF
+
 k = -1
-lastf = 1
 
 def iterF(n):
-    global k, lastf
+    global k
     F = [0] * (n + 1)
+    F[1] = 1
     if n== 1:
         return 1
     for i in range(1, n + 1, 2):
         k *= -1
-        F[i] = k * ((F[n - 1] / fact1(2 * n)) - fact1(2 * n + 1))
-        lastf = F[i]
-    return lastf
+        F[i] = k * ((F[n - 1] / fact2(2 * n)) - fact2(2 * n + 1))
+        return F[i]
 
-q = int(input())
+q = int(input("Ввeдите n"))
 
 time1 = []
 time2 = []
